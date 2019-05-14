@@ -32,7 +32,8 @@
             newElement.setAttribute('rotation', '0 ' + randomYRotation + ' 0')
 
             newElement.setAttribute('visible', 'false')
-            newElement.setAttribute('scale', '1 1 1')
+            newElement.setAttribute('scale', '4 4 4')
+            newElement.setAttribute('cube-env-map', 'path: cubemap/; extension: jpg;')
 
             newElement.setAttribute('gltf-model', '#treeModel')
             this.el.sceneEl.appendChild(newElement)
@@ -40,12 +41,7 @@
             newElement.addEventListener('model-loaded', () => {
               // Once the model is loaded, we are ready to show it popping in using an animation
               newElement.setAttribute('visible', 'true')
-              newElement.setAttribute('animation', {
-                property: 'scale',
-                to: '2 2 2',
-                easing: 'easeOutElastic',
-                dur: 800,
-              })
+              newElement.setAttribute('animation-mixer', 'clip: *')
             })
           })
         }
@@ -66,6 +62,13 @@
       <a-assets>
         <!-- Credit to Poly by Google for the model: https://poly.google.com/view/6pwiq7hSrHr -->
         <a-asset-item id="treeModel" src="01.glb"></a-asset-item>
+        <!-- Cubemap Assets -->
+        <img src="cubemap/posx.jpg">
+        <img src="cubemap/posy.jpg">
+        <img src="cubemap/posz.jpg">
+        <img src="cubemap/negx.jpg">
+        <img src="cubemap/negy.jpg">
+        <img src="cubemap/negz.jpg">
       </a-assets>
 
       <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
