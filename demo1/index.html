@@ -33,15 +33,19 @@
 
             newElement.setAttribute('visible', 'false')
             newElement.setAttribute('scale', '0.0001 0.0001 0.0001')
-//            newElement.setAttribute('cube-env-map', 'path: cubemap/; extension: jpg;')
 
-            newElement.setAttribute('gltf-model', '#Heineken')
+            newElement.setAttribute('gltf-model', '#treeModel')
             this.el.sceneEl.appendChild(newElement)
 
             newElement.addEventListener('model-loaded', () => {
               // Once the model is loaded, we are ready to show it popping in using an animation
               newElement.setAttribute('visible', 'true')
-//              newElement.setAttribute('animation-mixer', 'clip: *')
+              newElement.setAttribute('animation', {
+                property: 'scale',
+                to: '0.01 0.01 0.01',
+                easing: 'easeOutElastic',
+                dur: 800,
+              })
             })
           })
         }
@@ -61,14 +65,7 @@
       <!-- We can define assets here to be loaded when A-Frame initializes -->
       <a-assets>
         <!-- Credit to Poly by Google for the model: https://poly.google.com/view/6pwiq7hSrHr -->
-        <a-asset-item id="Heineken" src="tree.glb"></a-asset-item>
-        <!-- Cubemap Assets -->
-        <img src="cubemap/posx.jpg">
-        <img src="cubemap/posy.jpg">
-        <img src="cubemap/posz.jpg">
-        <img src="cubemap/negx.jpg">
-        <img src="cubemap/negy.jpg">
-        <img src="cubemap/negz.jpg">
+        <a-asset-item id="treeModel" src="tree.glb"></a-asset-item>
       </a-assets>
 
       <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
